@@ -71,10 +71,10 @@
                             <a class="nav-link" href="<c:url value="/home"/>">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<c:url value="/home/discover"/>"><spring:message code="NavLinks.Discover"/><span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="<c:url value="/home/discover"/>">Discover<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><spring:message code="NavLinks.Search"/></a>
+                            <a class="nav-link" href="<c:url value="/search"/>">Search</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#"><spring:message code="NavLinks.AboutUs"/></a>
@@ -237,7 +237,8 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="row" style="text-align: center;">
-                                        <label class="btn btn-primary btn-block"><i class="fas fa-list-ul"></i><spring:message code="Playlists"/>&nbsp;${fn:length(principal.playlists.toArray())}</label>
+                                        <label class="btn btn-primary btn-block"><i class="fas fa-list-ul"></i>Playlists&nbsp;${fn:length(principal.playlists.toArray())}
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="modal-footer">

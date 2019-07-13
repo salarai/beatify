@@ -399,6 +399,17 @@ h3 {
 
         display: none;
     }
+
+    .col-4 {
+
+        float: right !important;
+        max-width: 35% !important;
+    }
+
+    #songName > span {
+
+        font-size: 10px !important;
+    }
 }
 
 @media only screen and (min-width: 321px) and (max-width:599px) {
@@ -503,6 +514,16 @@ h3 {
         transition: all 0.2s ease-in;
         text-decoration: none;
     }
+
+    .col-4 {
+
+        float: right !important;
+    }
+
+    #songName > span {
+
+        font-size: 10px !important;
+    }
 }
 
 @media only screen and (min-width:600px) and (max-width: 799px){
@@ -573,6 +594,17 @@ h3 {
         transition: all 0.2s ease-in;
         text-decoration: none;
     }
+
+    .col-4 {
+
+        float: left !important;
+        max-width: 20% !important;
+    }
+
+    #songName > span {
+
+        font-size: 12px;
+    }
 }
 
 @media only screen and (min-width: 800px) and (max-width: 999px) {
@@ -602,6 +634,17 @@ h3 {
 
         z-index: 9999999999999;
     }
+
+    .col-4 {
+
+        float: left !important;
+        max-width: 16% !important;
+    }
+
+    #songName > span {
+
+        font-size: 12px;
+    }
 }
 
 @media only screen and (min-width: 1000px) and (max-width: 1111px) {
@@ -626,6 +669,12 @@ h3 {
 
         z-index: 9999999999999;
     }
+
+    .col-4 {
+
+        float: right;
+        max-width: 15% !important;
+    }
 }
 
 @media only screen and (min-width: 1112px){
@@ -649,6 +698,12 @@ h3 {
     .plyr {
 
         z-index: 9999999999999;
+    }
+
+    .col-4 {
+
+        float: left !important;
+        max-width: 16% !important;
     }
 }
 

@@ -65,10 +65,10 @@
                         <a class="nav-link" href="<c:url value="/home"/>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<c:url value="/home/discover"/>"><spring:message code="NavLinks.Discover"/><span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="<c:url value="/home/discover"/>">Discover<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><spring:message code="NavLinks.Search"/></a>
+                        <a class="nav-link" href="<c:url value="/search"/>">Search</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><spring:message code="NavLinks.AboutUs"/></a>

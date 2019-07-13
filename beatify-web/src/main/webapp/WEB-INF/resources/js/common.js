@@ -17,6 +17,33 @@ $(document).ready(function(){
         ]
     });
 
+    $('#login-form').submit(function () {
+
+        if (playing) {
+            var trackIds = [];
+            tracks.forEach(function (value) {
+
+                trackIds.push(value.id);
+            });
+            $.ajax({
+
+                type: 'GET',
+                url: 'http://localhost:8080/beatify/api/songs/setSongInfo',
+                cache: true,
+                method: 'GET',
+                dataType: 'text',
+                data: {
+
+                    songId: playingSondId,
+                    currentTime: audio.currentTime,
+                    shuffle: shuffle,
+                    repeat: repeat,
+                    tracks: trackIds
+                }
+            });
+        }
+    });
+
     var audio = $('#audio1').on('ended', function(){
 
         $('.track').attr('class', 'fa fa-play track');

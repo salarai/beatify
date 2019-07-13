@@ -40,11 +40,11 @@ public class SongRestController {
 
     @GetMapping(value = "/setSongInfo")
     public String setSongInfo(@RequestParam("songId") Long songId,
-                            @RequestParam("currentTime") String currentTime,
-                            @RequestParam("shuffle") boolean shuffle,
-                            @RequestParam("repeat") boolean repeat,
-                            @RequestParam(value = "tracks[]", required = false) List<Long> tracksIds,
-                            HttpServletRequest request) {
+                              @RequestParam("currentTime") String currentTime,
+                              @RequestParam("shuffle") boolean shuffle,
+                              @RequestParam("repeat") boolean repeat,
+                              @RequestParam(value = "tracks[]", required = false) List<Long> tracksIds,
+                              HttpServletRequest request) {
 
         SongDTO songInfo = new SongDTO();
         PlaylistDTO playListInfo = new PlaylistDTO();

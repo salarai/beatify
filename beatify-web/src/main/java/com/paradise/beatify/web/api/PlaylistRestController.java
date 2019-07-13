@@ -21,7 +21,7 @@ public class PlaylistRestController {
     }
 
     @GetMapping(value = "/getPlayListInfo")
-    public PlaylistDTO getPlayistInfo(HttpServletRequest request) {
+    public PlaylistDTO getPlaylistInfo(HttpServletRequest request) {
 
         return (PlaylistDTO) request.getSession().getAttribute("playList");
     }

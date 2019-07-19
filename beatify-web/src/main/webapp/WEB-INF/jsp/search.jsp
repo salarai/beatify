@@ -10,27 +10,13 @@
 <%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<c:choose>
-    <c:when test="${pageContext.response.locale == 'ar'}">
-        <c:set var="direction" value="rtl"/>
-    </c:when>
-    <c:otherwise>
-        <c:set var="direction" value="ltr"/>
-    </c:otherwise>
-</c:choose>
-<spring:message code="Login.EmailLabel" var="emailPlaceHolder"/>
-<spring:message code="Login.PasswordLabel" var="passwordPlaceHolder"/>
-<spring:message code="Login.FirstName" var="firstNamePlaceHolder"/>
-<spring:message code="Login.LastName" var="lastNamePlaceHolder"/>
-<spring:message code="Login.Nationality" var="nationalityPlaceHolder"/>
-
 <html>
 <head>
     <meta name="_csrf" content="${_csrf.token}"/>
     <!-- default header name is X-CSRF-TOKEN -->
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><spring:message code="Home.Title"/></title>
+    <title>Beatify Search</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
@@ -70,7 +56,7 @@
 <div class="static">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="navbar-brand">
-            <a href="<c:url value="/home"/>"><spring:message code="App.Name"/></a>
+            <a href="<c:url value="/home"/>">Beatify</a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,14 +68,14 @@
                     <a class="nav-link" href="<c:url value="/home"/>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/home/discover"/>"><spring:message
-                            code="NavLinks.Discover"/><span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="<c:url value="/home/discover"/>">Discover<span
+                            class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><spring:message code="NavLinks.Search"/></a>
+                    <a class="nav-link" href="#">Search</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><spring:message code="NavLinks.AboutUs"/></a>
+                    <a class="nav-link" href="#">About Us</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -97,7 +83,8 @@
                     <c:choose>
                         <c:when test="${not authenticated}">
                             <button id="userlogin" class="btn btn-warning" data-toggle="modal" data-target="#loginForm">
-                                <spring:message code="NavLinks.Login"/></button>
+                                Login/Register
+                            </button>
                         </c:when>
                         <c:otherwise>
                             <button id="userlogin" class="btn btn-primary" data-toggle="modal"
@@ -108,7 +95,7 @@
             </ul>
         </div>
     </nav>
-    <div dir="${direction}" class="modal fade" id="playlist" tabindex="-1" role="dialog" aria-labelledby="confirm"
+    <div class="modal fade" id="playlist" tabindex="-1" role="dialog" aria-labelledby="confirm"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -135,19 +122,17 @@
     </div>
     <c:choose>
         <c:when test="${not authenticated}">
-            <div dir="${direction}" class="modal hide fade" id="loginForm" data-keyboard="false" data-backdrop="static"
+            <div class="modal hide fade" id="loginForm" data-keyboard="false" data-backdrop="static"
                  tabindex="-1" role="dialog" aria-labelledby="confirm" aria-hidden="true">
                 <div class="modal-dialog" id="login">
                     <div class="modal-content">
                         <div class="modal-header">
                             <ul class="nav nav-pills">
                                 <li id="firstTab" class="nav-item nav-link">
-                                    <a class="btn" data-toggle="tab" data-target="#tab1"><spring:message
-                                            code="Login.Title"/></a>
+                                    <a class="btn" data-toggle="tab" data-target="#tab1">Login</a>
                                 </li>
                                 <li id="secondTab" class="nav-item nav-link">
-                                    <a class="btn" data-toggle="tab" data-target="#tab2"><spring:message
-                                            code="Login.Signup"/></a>
+                                    <a class="btn" data-toggle="tab" data-target="#tab2">Sign up</a>
                                 </li>
                             </ul>
                             <button type="button" class="close" style="padding-left: 0; margin-left: 0;"
@@ -159,34 +144,32 @@
                             <div class="tabbable">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab1">
-                                        <h2><spring:message code="Login.LoginHeader"/></h2>
+                                        <h2>Log in with your email account</h2>
                                         <form role="form" action="<c:url value="/login"/>" method="post"
                                               style="text-align: center;" id="login-form" autocomplete="on">
                                             <div class="form-group">
-                                                <label for="emailAddress" class="sr-only"><spring:message
-                                                        code="Login.EmailLabel"/></label>
+                                                <label for="emailAddress" class="sr-only">Email Address</label>
                                                 <input type="email" name="username" id="emailAddress"
                                                        class="form-control"
-                                                       placeholder="<spring:message code="Login.EmailPlaceHolder"/>">
+                                                       placeholder="Your E-mail Address">
                                             </div>
                                             <div class="form-group">
-                                                <label for="password" class="sr-only"><spring:message
-                                                        code="Login.PasswordLabel"/></label>
+                                                <label for="password" class="sr-only">Password</label>
                                                 <input type="password" name="password" id="password"
                                                        class="form-control"
-                                                       placeholder="<spring:message code="Login.PasswordPlaceHolder"/>">
+                                                       placeholder="Your Password">
                                             </div>
                                             <div dir="ltr" class="pretty p-curve p-icon p-smooth"
                                                  style="margin-bottom: 20px;">
                                                 <input type="checkbox" name="rememberMe"/>
                                                 <div class="state p-primary">
                                                     <i class="icon fa fa-check"></i>
-                                                    <label><spring:message code="Login.RememberMeLabel"/></label>
+                                                    <label>Remember Me</label>
                                                 </div>
                                             </div>
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                             <input type="submit" id="btn-login" class="btn btn-success btn-lg btn-block"
-                                                   value="<spring:message code="Login.LoginButton"/>">
+                                                   value="Log in">
                                         </form>
                                     </div>
                                     <div class="tab-pane" id="tab2">
@@ -198,20 +181,20 @@
                                                                 modelAttribute="userDTO" id="signup-form">
                                                         <sform:input path="username" id="usernameSignup"
                                                                      cssClass="form-control" type="email"
-                                                                     placeholder="${emailPlaceHolder}"/>
+                                                                     placeholder="Your Email Address"/>
                                                         <sform:errors path="username" cssClass="badge alert-danger"
                                                                       cssStyle="margin-top: 4px;"/>
                                                         <sform:input path="password" id="passwordSignup"
                                                                      cssClass="form-control" cssStyle="margin-top: 5px;"
                                                                      type="password"
-                                                                     placeholder="${passwordPlaceHolder}"/>
+                                                                     placeholder="Your Password"/>
                                                         <sform:errors path="password" cssClass="badge alert-danger"
                                                                       cssStyle="margin-top: 4px;"/>
                                                         <div class="row" style="margin-top: 5px; margin-bottom: 5px;">
                                                             <div class="col-md-6">
                                                                 <sform:input path="firstName" id="firstName"
                                                                              cssClass="form-control"
-                                                                             placeholder="${firstNamePlaceHolder}"/>
+                                                                             placeholder="First Name"/>
                                                                 <sform:errors path="firstName"
                                                                               cssClass="badge alert-danger"
                                                                               cssStyle="margin-top: 4px;"/>
@@ -219,7 +202,7 @@
                                                             <div class="col-md-6">
                                                                 <sform:input path="lastName" id="lastName"
                                                                              cssClass="form-control"
-                                                                             placeholder="${lastNamePlaceHolder}"/>
+                                                                             placeholder="Last Name"/>
                                                                 <sform:errors path="lastName"
                                                                               cssClass="badge alert-danger"
                                                                               cssStyle="margin-top: 4px;"/>
@@ -230,7 +213,7 @@
                                                                      placeholder="Phone Number"/>
                                                         <sform:select path="nationality" cssClass="wide"
                                                                       cssStyle="margin-bottom: 7px; margin-top: 5px;"
-                                                                      title="${nationalityPlaceHolder}">
+                                                                      title="Nationality">
                                                             <sform:option selected="true" disabled="true"
                                                                           value="0">Nationality</sform:option>
                                                             <c:forEach items="${countries}" var="country">
@@ -243,8 +226,8 @@
                                                             <input type="hidden" name="${_csrf.parameterName}"
                                                                    value="${_csrf.token}"/>
                                                             <button class="btn btn-lg btn-primary btn-block"
-                                                                    type="submit"><spring:message
-                                                                    code="Login.Signup"/></button>
+                                                                    type="submit">Sign up
+                                                            </button>
                                                         </div>
                                                     </sform:form>
                                                 </div>
@@ -255,45 +238,43 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a href="#" class="forget" data-toggle="modal" data-target="#forget"><spring:message
-                                    code="Login.ForgotLabel"/></a>
+                            <a href="#" class="forget" data-toggle="modal" data-target="#forget">Forgot your
+                                password?</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div dir="${direction}" class="modal fade" id="forget" tabindex="-1" role="dialog" aria-labelledby="confirm"
+            <div class="modal fade" id="forget" tabindex="-1" role="dialog" aria-labelledby="confirm"
                  aria-hidden="true">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title"><spring:message code="Login.RecoveryLabel"/></h5>
+                            <h5 class="modal-title">Password Recovery</h5>
                             <button type="button" class="close" style="padding-left: 0; margin-left: 0;"
                                     data-dismiss="modal">
                                 &times;
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p style="text-align: center;"><spring:message code="Login.RecoveryEmailLabel"/></p>
+                            <p style="text-align: center;">Recovery Email</p>
                             <input type="email" name="recovery-email" id="recovery-email" class="form-control"
                                    autocomplete="off">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success"><spring:message
-                                    code="Login.RecoveryButton"/></button>
-                            <a href="<c:url value="/logout"/>" class="btn btn-default btn-danger"><spring:message
-                                    code="Login.RecoveryCancelButton"/></a>
+                            <button type="button" class="btn btn-success">Recovery</button>
+                            <a href="<c:url value="/logout"/>" class="btn btn-default btn-danger">Cancel</a>
                         </div>
                     </div>
                 </div>
             </div>
         </c:when>
         <c:otherwise>
-            <div dir="${direction}" class="modal fade" id="userProfile" tabindex="-1" role="dialog"
+            <div class="modal fade" id="userProfile" tabindex="-1" role="dialog"
                  aria-labelledby="confirm" aria-hidden="true">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title"><spring:message code="UserProfile"/></h5>
+                            <h5 class="modal-title">User Profile</h5>
                             <button type="button" class="close" style="padding-left: 0; margin-left: 0;"
                                     data-dismiss="modal">
                                 &times;
@@ -307,9 +288,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-info"><spring:message code="Settings"/></button>
-                            <a href="#" class="btn btn-default btn-danger" data-dismiss="modal"><spring:message
-                                    code="Logout"/></a>
+                            <button type="button" class="btn btn-info">Settings</button>
+                            <a href="#" class="btn btn-default btn-danger" data-dismiss="modal">Logout</a>
                         </div>
                     </div>
                 </div>
